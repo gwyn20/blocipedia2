@@ -40,4 +40,16 @@ group :development do
   gem 'listen', '~> 3.0.5'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'rails-controller-testing'
+end
+
 gem 'bootstrap-sass'
+
+gem 'devise'
+
+# Used for encrypting passwords
+gem 'bcrypt'
+
+gem 'figaro', '1.0'
