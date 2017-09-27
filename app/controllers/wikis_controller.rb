@@ -34,6 +34,9 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    unless ApplicationPolicy.new(current_user, @wiki).update?
+      raise Pundit::NotAuthorizedError, "not allowed to update? this #{@wiki.inspect}"
+    end
 
     if @wiki.save
       flash[:notice] = "Wiki was updated."

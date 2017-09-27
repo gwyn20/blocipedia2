@@ -5,6 +5,7 @@
 
 <% if user_signed_in? %>
   Welcome <strong><%= link_to current_user.email %></strong>! <br>
+  <small> Current Plan: <%= link_to current_user.role %></small> <br><br>
   <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary' %>
 </div>        
 <% else %>

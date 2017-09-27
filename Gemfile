@@ -53,3 +53,6 @@ gem 'devise'
 gem 'bcrypt'
 
 gem 'figaro', '1.0'
+
+# Used for User Roles
+gem 'pundit'
