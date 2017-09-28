@@ -56,3 +56,6 @@ gem 'figaro', '1.0'
 
 # Used for User Roles
 gem 'pundit'
+
+# Used for Seeding Data
+gem 'faker'

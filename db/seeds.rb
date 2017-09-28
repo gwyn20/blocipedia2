@@ -1,10 +1,19 @@
 require 'Random_data'
+require 'faker'
+
+# Create Test User
+1.times do
+    User.create!(
+        email:    "gwyn20@gmail.com",
+        password: "password"
+    )
+end
 
 # Create Users
 5.times do
     User.create!(
-        email:    RandomData.random_email,
-        password: RandomData.random_sentence
+        email:    Faker::Internet.email,
+        password: Faker::Internet.password
     )
 end
 
@@ -14,8 +23,8 @@ users = User.all
 25.times do
     Wiki.create!(
         user:   users.sample,
-        title:  RandomData.random_sentence,
-        body:   RandomData.random_paragraph
+        title:  Faker::RickAndMorty.location,
+        body:   Faker::RickAndMorty.quote
     )
 end
 
