@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'charges/new'
+
+  get 'charges/downgrade'
+
   resources :wikis
 
   devise_for :users
@@ -10,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   
-  
+  resources :charges, only: [:new, :create, :downgrade]  
 
   
 end
