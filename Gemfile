@@ -59,3 +59,6 @@ gem 'pundit'
 
 # Used for Seeding Data
 gem 'faker'
+
+# Used for Processing Payments
+gem 'stripe'

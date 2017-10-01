@@ -1,6 +1,11 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @user = current_user
+      if current_user.admin? || current_user.premium?
+        @wikis = Wiki.all
+      elsif current_user.standard?
+        @wikis = Wiki.where(private: false)
+      end
   end
 
   def show
@@ -15,6 +20,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
     @wiki.user = current_user
     
     if @wiki.save
@@ -34,6 +40,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
     unless ApplicationPolicy.new(current_user, @wiki).update?
       raise Pundit::NotAuthorizedError, "not allowed to update? this #{@wiki.inspect}"
     end

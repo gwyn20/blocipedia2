@@ -1,4 +1,25 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Account Details</h2>
+
+<h2 style="color: #39998a;"><%= current_user.email %></h2>
+
+  <% if current_user.standard? %>
+  <h2>Current Plan:<strong style="color: #39998a;"> Standard </strong></h2>
+  <hr>
+    <h3>Edit Plan</h3>
+      <p>Please click below if you would like to upgrade to our Premium Plan and enjoy features such as creating Private Wikis</p>
+        <%= link_to "Upgrade Plan", new_charge_path, class: 'btn btn-primary' %>
+  <% elsif current_user.premium? %>
+    <h2>Current Plan:<strong style="color: #39998a;"> Premium </strong></h2>
+    <hr>
+    <h3>Edit Plan</h3>
+      <p>Please click below if you would like to return to our Standard Free Plan</p>
+      <p>Note: You will loose access to all our Premium Features and your Privite wikis will become Public</p>
+        <%= link_to "Downgrade Plan", charges_downgrade_path, class: 'btn btn-danger' %>
+      <% end %>
+
+
+<hr>
+<h3>Edit <%= resource_name.to_s.humanize %></h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -30,14 +51,21 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
-
+<br>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class: 'btn btn-primary' %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<hr>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<h3>Cancel My Account</h3>
 
-<%= link_to "Back", :back %>
+<p>We will be sad to see you go, but if you would like to cancel your account, you can do so by clicking below.
+<br> 
+<strong>Please note that any wikis you have created will remain on the site. If you wish to remove your wikis, please delete them before you cancel your account.</strong>
+</p>
+ <%= button_to "Cancel Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class: 'btn btn-danger' %>
+<hr>
+
+<%= link_to "Back", :back, class: 'btn btn-primary' %>
