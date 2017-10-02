@@ -62,3 +62,6 @@ gem 'faker'
 
 # Used for Processing Payments
 gem 'stripe'
+
+# Used for Enabaling Markdown Syntax
+gem 'redcarpet'

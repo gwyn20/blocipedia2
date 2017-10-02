@@ -11,6 +11,9 @@
       <div class="form-group">
         <%= f.label :body %>
         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+          <div class="markdown_option">
+            Feel free to use <a href="https://guides.github.com/features/mastering-markdown/" target="_blank"><b>Markdown Syntax</b></a>
+          </div>
       </div>
       <% if current_user.admin? || current_user.premium? %>
       <div class="form-group">

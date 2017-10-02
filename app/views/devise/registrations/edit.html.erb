@@ -3,13 +3,13 @@
 <h2 style="color: #39998a;"><%= current_user.email %></h2>
 
   <% if current_user.standard? %>
-  <h2>Current Plan:<strong style="color: #39998a;"> Standard </strong></h2>
+  <h3>Current Plan:<strong style="color: #39998a;"> Standard </strong></h3>
   <hr>
     <h3>Edit Plan</h3>
       <p>Please click below if you would like to upgrade to our Premium Plan and enjoy features such as creating Private Wikis</p>
         <%= link_to "Upgrade Plan", new_charge_path, class: 'btn btn-primary' %>
   <% elsif current_user.premium? %>
-    <h2>Current Plan:<strong style="color: #39998a;"> Premium </strong></h2>
+    <h3>Current Plan:<strong style="color: #39998a;"> Premium </strong></h3>
     <hr>
     <h3>Edit Plan</h3>
       <p>Please click below if you would like to return to our Standard Free Plan</p>
