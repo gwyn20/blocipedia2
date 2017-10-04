@@ -2,7 +2,7 @@ class WikisController < ApplicationController
   def index
     @user = current_user
       if current_user.admin? || current_user.premium?
-        @wikis = Wiki.all
+        @wikis = policy_scope(Wiki)
       elsif current_user.standard?
         @wikis = Wiki.where(private: false)
       end
@@ -33,6 +33,7 @@ class WikisController < ApplicationController
   end
 
   def edit
+    @users = User.all
     @wiki = Wiki.find(params[:id])
   end
 

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :wikis
 
+  resources :wikis do
+    resources :collaborators, only: [:new, :create, :destroy]
+  end
+
   devise_for :users
   
   get 'about' => 'welcome#about'
@@ -14,7 +18,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   
-  resources :charges, only: [:new, :create, :downgrade]  
+  resources :charges, only: [:new, :create, :downgrade] 
+  
+  
 
   
 end
