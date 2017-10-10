@@ -1,0 +1,27 @@
+<% if current_user.premium? || current_user.admin? %>
+    <h3>Add Collaborators</h3>
+
+    <%= form_for [wiki, Collaborator.new] do |collaborator| %>
+        <%= email_field_tag :collaborator %>
+        <%= collaborator.submit "Add Collaborator", class: 'btn btn-primary' %>
+    <% end %>
+
+    <% if wiki.collaborators.exists? %>
+        <h3>Remove Collaborators</h3>
+
+        <div class="row">
+            <div class="col-md-8">
+                <% wiki.collaborators.each do |collaborator| %>
+                    <div class="media">
+                        <div class="media-body">
+                            <% user = User.find(collaborator.user_id) %>
+                                <%= user.email %>
+                                <%= link_to "Remove", wiki_collaborator_path(@wiki, collaborator), class: 'btn btn-danger', method: :delete%>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+
+<% end %>

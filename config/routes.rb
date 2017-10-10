@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :collaborators
+
   get 'charges/new'
 
   get 'charges/downgrade'
@@ -19,8 +21,5 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   
   resources :charges, only: [:new, :create, :downgrade] 
-  
-  
-
   
 end
